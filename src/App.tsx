@@ -29,7 +29,7 @@ const seedGrid = () => {
   return rows;
 };
 
-const countNeighbors = (grid: any, x: number, y: number) => {
+const countNeighbors = (grid: any[][], x: number, y: number) => {
   return operations.reduce((acc, [i, j]) => {
     const row = (x + i + numRows) % numRows;
     const col = (y + j + numCols) % numCols;

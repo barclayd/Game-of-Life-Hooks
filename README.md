@@ -1,44 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Conway's Game of Life
 
-## Available Scripts
+Conway's Game of Life simulation built using React.
 
-In the project directory, you can run:
+#### Demo
 
-### `yarn start`
+<p align="center">
+  <img alt="Screenshot" src=''>
+</p>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Rules
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+1. A live cell with less than two live neighbours dies.
 
-### `yarn test`
+2. A live cell with two or three neighbours lives on to the next generation.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. A live cell with more than tree neighbours dies.
 
-### `yarn build`
+4. A dead cell with exactly three neighbours is reborn and becomes a live cell.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+More information about Conway's Game of Life can  be found [here](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Assumptions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* The board is an infinite amount of space (rather than an infinite grid) and therefore cells can travel further than the edges of the grid in a wrap-around world
+* A coloured cell is a live cell
+* A non-coloured cell is a dead cell
 
-### `yarn eject`
+### How to Run
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```shell script
+$ git clone https://github.com/barclayd/Game-of-Life-Hooks.git
+$ cd Game-of-Life-Hooks
+$ npm run start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This will open localhost:3000, displaying the grid
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### How to Play
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Bring a given cell to life by clicking on a dead cell within in a grid
+* Kill a cell by clicking on a live cell
+* Use the buttons to toggle whether to seed or clear the grid, start or stop the iteration of generations
