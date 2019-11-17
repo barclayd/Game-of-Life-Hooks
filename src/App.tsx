@@ -15,23 +15,30 @@ const operations = [
   [1, 1],
 ];
 
+const resetGrid = () =>
+  Array.from({ length: numRows }).map(() =>
+    Array.from({ length: numCols }).fill(0),
+  );
+
+const seedGrid = () => {
+  const rows = [];
+  for (let i = 0; i < numRows; i++) {
+    rows.push(Array.from(Array(numCols), () => (Math.random() > 0.7 ? 1 : 0)));
+  }
+  return rows;
+};
+
 const countNeighbors = (grid: any, x: number, y: number) => {
-  const count = operations.reduce((acc, [i, j]) => {
-    let row = (x + i + numRows) % numRows;
-    let col = (y + j + numCols) % numCols;
+  return operations.reduce((acc, [i, j]) => {
+    const row = (x + i + numRows) % numRows;
+    const col = (y + j + numCols) % numCols;
     acc += grid[row][col];
     return acc;
   }, 0);
-  console.log(count);
-  return count;
 };
 
 const App: React.FC = () => {
-  const [grid, setGrid] = useState(() =>
-    Array.from({ length: numRows }).map(() =>
-      Array.from({ length: numCols }).fill(0),
-    ),
-  );
+  const [grid, setGrid] = useState(() => resetGrid());
 
   const [running, setRunning] = useState(false);
 
@@ -47,7 +54,7 @@ const App: React.FC = () => {
       produce(currentGrid, (gridCopy) => {
         for (let i = 0; i < numRows; i++) {
           for (let j = 0; j < numCols; j++) {
-            const count = countNeighbors(gridCopy, i, j);
+            const count = countNeighbors(currentGrid, i, j);
             if (currentGrid[i][j] === 1 && (count < 2 || count > 3))
               gridCopy[i][j] = 0;
             if (!currentGrid[i][j] && count === 3) gridCopy[i][j] = 1;
@@ -56,7 +63,7 @@ const App: React.FC = () => {
       }),
     );
 
-    setTimeout(runSimulation, 1000);
+    setTimeout(runSimulation, 500);
   }, []);
 
   return (
@@ -65,10 +72,26 @@ const App: React.FC = () => {
         onClick={() => {
           setRunning(!running);
           runningRef.current = !running;
-          runSimulation();
+          if (!running) {
+            runSimulation();
+          }
         }}
       >
         {!running ? 'Start' : 'Stop'}
+      </button>
+      <button
+        onClick={() => {
+          setGrid(resetGrid());
+        }}
+      >
+        Clear
+      </button>
+      <button
+        onClick={() => {
+          setGrid(seedGrid());
+        }}
+      >
+        Seed
       </button>
       <div
         style={{
