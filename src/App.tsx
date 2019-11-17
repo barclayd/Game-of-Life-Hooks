@@ -1,8 +1,9 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, FC } from 'react';
 import produce from 'immer';
 
 const numRows = 50;
 const numCols = 50;
+const speed = 500;
 
 const operations = [
   [-1, -1],
@@ -37,33 +38,38 @@ const countNeighbors = (grid: any, x: number, y: number) => {
   }, 0);
 };
 
-const App: React.FC = () => {
+const App: FC = () => {
   const [grid, setGrid] = useState(() => resetGrid());
 
   const [running, setRunning] = useState(false);
+  const [generation, setGeneration] = useState(0);
 
   const runningRef = useRef(running);
   runningRef.current = running;
 
+  const generationRef = useRef(generation);
+  generationRef.current = generation;
+
   const runSimulation = useCallback(() => {
-    if (!runningRef.current) {
-      return;
-    }
+    setInterval(() => {
+      if (!runningRef.current) {
+        return;
+      }
 
-    setGrid((currentGrid) =>
-      produce(currentGrid, (gridCopy) => {
-        for (let i = 0; i < numRows; i++) {
-          for (let j = 0; j < numCols; j++) {
-            const count = countNeighbors(currentGrid, i, j);
-            if (currentGrid[i][j] === 1 && (count < 2 || count > 3))
-              gridCopy[i][j] = 0;
-            if (!currentGrid[i][j] && count === 3) gridCopy[i][j] = 1;
+      setGrid((currentGrid) =>
+        produce(currentGrid, (gridCopy) => {
+          for (let i = 0; i < numRows; i++) {
+            for (let j = 0; j < numCols; j++) {
+              const count = countNeighbors(currentGrid, i, j);
+              if (currentGrid[i][j] === 1 && (count < 2 || count > 3))
+                gridCopy[i][j] = 0;
+              if (!currentGrid[i][j] && count === 3) gridCopy[i][j] = 1;
+            }
           }
-        }
-      }),
-    );
-
-    setTimeout(runSimulation, 500);
+        }),
+      );
+      setGeneration(++generationRef.current);
+    }, speed);
   }, []);
 
   return (
@@ -82,6 +88,7 @@ const App: React.FC = () => {
       <button
         onClick={() => {
           setGrid(resetGrid());
+          setGeneration(0);
         }}
       >
         Clear
@@ -93,6 +100,7 @@ const App: React.FC = () => {
       >
         Seed
       </button>
+      <p>Generation: {generation}</p>
       <div
         style={{
           display: 'grid',
