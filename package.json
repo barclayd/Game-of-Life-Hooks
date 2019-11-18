@@ -1,7 +1,7 @@
 {
   "name": "game-of-life-hooks",
   "version": "0.1.0",
-  "homepage": "http://barclayd.github.io/game-of-life-hooks",
+  "homepage": "https://barclayd.github.io/Gaame-of-Life-Hooks",
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.23",
