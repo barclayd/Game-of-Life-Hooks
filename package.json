@@ -1,6 +1,7 @@
 {
   "name": "game-of-life-hooks",
   "version": "0.1.0",
+  "homepage": "http://barclayd.github.io/game-of-life-hooks",
   "private": true,
   "dependencies": {
     "@types/jest": "24.0.23",
@@ -16,6 +17,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -33,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
   }
 }
