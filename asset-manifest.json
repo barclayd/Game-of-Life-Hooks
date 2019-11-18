@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/game-of-life-hooks/static/js/main.8e12b2a3.chunk.js",
+    "main.js.map": "/game-of-life-hooks/static/js/main.8e12b2a3.chunk.js.map",
+    "runtime-main.js": "/game-of-life-hooks/static/js/runtime-main.50388ff1.js",
+    "runtime-main.js.map": "/game-of-life-hooks/static/js/runtime-main.50388ff1.js.map",
+    "static/js/2.6079cf2c.chunk.js": "/game-of-life-hooks/static/js/2.6079cf2c.chunk.js",
+    "static/js/2.6079cf2c.chunk.js.map": "/game-of-life-hooks/static/js/2.6079cf2c.chunk.js.map",
+    "index.html": "/game-of-life-hooks/index.html",
+    "precache-manifest.240d102c7dbf6618bc823392eb4ba8ae.js": "/game-of-life-hooks/precache-manifest.240d102c7dbf6618bc823392eb4ba8ae.js",
+    "service-worker.js": "/game-of-life-hooks/service-worker.js"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.50388ff1.js",
+    "static/js/2.6079cf2c.chunk.js",
+    "static/js/main.8e12b2a3.chunk.js"
+  ]
+}
