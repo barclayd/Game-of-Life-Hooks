@@ -2,10 +2,12 @@
 
 Conway's Game of Life simulation built using React.
 
+Deployed [live!](https://barclayd.github.io/Game-of-Life-Hooks/)
+
 #### Demo
 
 <p align="center">
-  <img alt="Screenshot" src=''>
+  <img alt="Screenshot" src='https://user-images.githubusercontent.com/39765499/69092417-3dda6c00-0a44-11ea-89c8-55257ad62ca1.gif'>
 </p>
 
 ### Rules
